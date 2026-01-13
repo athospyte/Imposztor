@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imposztor Játék - Spoiler Free</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .progress-bar { transition: width 1s linear; }
+    </style>
+</head>
+<body class="bg-gray-900 text-white font-sans min-h-screen flex items-center justify-center p-4">
+
+<div id="app" class="bg-gray-800 p-8 rounded-xl shadow-2xl w-full max-w-md text-center border border-gray-700">
+    </div>
+
+<script>
+    const encodedFallback = ["YXV0w7M=", "YWxtYQ==", "Z2l0w6Fy", "aXNrb2xh", "cmVwb2zFkQ==", "dGVsZWZvbg==", "a2F2w6k=", "ZXJkxZE="];
+
+    let state = {
+        players: 3,
+        impostorIndex: -1,
+        secretWord: "",
+        currentIndex: 0
+    };
+
+    const app = document.getElementById('app');
+
+    // Helper a biztonságos dekódoláshoz
+    function decode(str) {
+        return decodeURIComponent(escape(atob(str)));
+    }
+
+    async function fetchRandomWikiWord() {
+        const url = `https://hu.wikipedia.org/w/api.php?action=query&list=random&rnnamespace=0&rnlimit=1&format=json&origin=*`;
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+            return data.query.random[0].title;
+        } catch (e) {
+            console.warn("Wiki API hiba, kódolt fallback használata.");
+            const randomEncoded = encodedFallback[Math.floor(Math.random() * encodedFallback.length)];
+            return decode(randomEncoded);
+        }
+    }
+
+    function initUI() {
+        app.innerHTML = `
+            <h1 class="text-2xl font-bold mb-6 text-blue-400 tracking-tight">Imposztor Játék</h1>
+            <div class="mb-6 bg-gray-700/30 p-4 rounded-lg">
+                <label class="block mb-2 text-gray-400 text-xs uppercase font-semibold">Játékosok száma</label>
+                <input type="number" id="playerInput" min="3" max="7" value="${state.players}" 
+                    class="bg-gray-800 border border-gray-600 rounded px-4 py-2 w-24 text-center text-2xl font-mono focus:ring-2 focus:ring-blue-500 outline-none">
+            </div>
+            <button onclick="startGame()" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 px-10 rounded-xl transition-all shadow-lg active:scale-95">
+                Játék Indítása
+            </button>
+        `;
+    }
+
+    async function startGame() {
+        state.players = parseInt(document.getElementById('playerInput').value);
+        state.impostorIndex = Math.floor(Math.random() * state.players);
+        state.currentIndex = 0;
+
+        app.innerHTML = `
+            <div class="flex flex-col items-center py-8">
+                <div class="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-blue-500 mb-4"></div>
+                <p class="text-gray-400 animate-pulse">Titkos szó generálása...</p>
+            </div>`;
+
+        state.secretWord = await fetchRandomWikiWord();
+        showTransition();
+    }
+
+    function showTransition() {
+        if (state.currentIndex >= state.players) {
+            showEnd();
+            return;
+        }
+
+        app.innerHTML = `
+            <div class="mb-2 text-xs text-gray-500 uppercase font-bold">Soron lévő: ${state.currentIndex + 1} / ${state.players}</div>
+            <h2 class="text-xl mb-6 text-white font-light">Készülj fel!</h2>
+            <div class="p-6 bg-blue-900/20 border border-blue-500/30 rounded-lg mb-8">
+                <p class="text-sm text-blue-300">Add át az eszközt a következő játékosnak.</p>
+            </div>
+            <button onclick="startReveal()" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-4 rounded-xl text-lg shadow-lg transition active:scale-95">
+                Megnézem a szavam
+            </button>
+        `;
+    }
+
+    function startReveal() {
+        let COUNT = count = 3;
+        renderTimer(count, "Vigyázz, jön a szó!", "bg-yellow-500");
+        
+        const timer = setInterval(() => {
+            count--;
+            if (count > 0) {
+                updateBar(count, COUNT);
+            } else {
+                clearInterval(timer);
+                showWord();
+            }
+        }, 1000);
+    }
+
+    function showWord() {
+        const isImpostor = state.currentIndex === state.impostorIndex;
+        const displayValue = isImpostor ? "IMPOSZTOR" : state.secretWord;
+        
+        let COUNT = count = 5;
+        renderTimer(count, displayValue, isImpostor ? "bg-red-600" : "bg-blue-500", true);
+
+        const timer = setInterval(() => {
+            count--;
+            if (count > 0) {
+                updateBar(count, COUNT);
+            } else {
+                clearInterval(timer);
+                state.currentIndex++;
+                app.innerHTML = `
+                    <h1 class="text-4xl font-mono tracking-[0.5em] mb-8 text-gray-700 select-none">######</h1>
+                    <button onclick="showTransition()" class="w-full bg-gray-600 hover:bg-gray-500 py-3 rounded-lg font-bold transition">
+                        Kész, jöhet a következő
+                    </button>
+                `;
+            }
+        }, 1000);
+    }
+
+    function renderTimer(seconds, text, colorClass, big = false) {
+        app.innerHTML = `
+            <h1 class="${big ? 'text-3xl' : 'text-lg'} font-bold mb-8 uppercase break-words px-2">${text}</h1>
+            <div class="w-full bg-gray-700 h-3 rounded-full overflow-hidden mb-2">
+                <div id="bar" class="${colorClass} h-full progress-bar" style="width: 100%"></div>
+            </div>
+            <p class="text-[10px] text-gray-500 uppercase tracking-widest">Kérlek ne mutasd másnak!</p>
+        `;
+    }
+
+    function updateBar(current, total) {
+        const bar = document.getElementById('bar');
+        if (bar) bar.style.width = `${(current / total) * 100}%`;
+    }
+
+    function showEnd() {
+        app.innerHTML = `
+            <h1 class="text-3xl font-bold text-green-400 mb-4">Jó játékot!</h1>
+            <p class="text-gray-400 mb-8 px-4">Mindenki megkapta a szerepét. Kezdődhet a gyanúsítás!</p>
+            <button onclick="initUI()" class="w-full border border-blue-600 text-blue-400 hover:bg-blue-600 hover:text-white py-3 rounded-lg font-bold transition">
+                Új kör indítása
+            </button>
+        `;
+    }
+
+    initUI();
+</script>
+</body>
+</html>
