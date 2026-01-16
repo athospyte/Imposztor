@@ -34,6 +34,10 @@
     }
 
     async function fetchRandomWikiWord() {
+        return decode(randomEncoded);
+    }
+    
+    async function fetchRandomWikiWord2() {
         const url = `https://hu.wikipedia.org/w/api.php?action=query&list=random&rnnamespace=0&rnlimit=1&format=json&origin=*`;
         try {
             const response = await fetch(url);
@@ -162,3 +166,4 @@
 </body>
 
 </html>
+
