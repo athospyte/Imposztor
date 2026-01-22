@@ -132,7 +132,8 @@
     }
 
     function startReveal() {
-        let COUNT = count = 3;
+        const COUNT = 3;
+        let count = COUNT;
         renderTimer(count, "Vigyázz, jön a szó!", "bg-yellow-500");
         
         const timer = setInterval(() => {
@@ -150,7 +151,8 @@
         const isImpostor = state.currentIndex === state.impostorIndex;
         const displayValue = isImpostor ? "IMPOSZTOR" : state.secretWord;
         
-        let COUNT = count = 5;
+        const COUNT = 5;
+        let count = COUNT;
         renderTimer(count, displayValue, isImpostor ? "bg-red-600" : "bg-blue-500", true);
 
         const timer = setInterval(() => {
@@ -200,6 +202,7 @@
 </body>
 
 </html>
+
 
 
 
