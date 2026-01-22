@@ -15,7 +15,55 @@
     </div>
 
 <script>
-    const encodedFallback = ["a29yw6Fjcw==", "a2VyZGlraQ==", "cmVwdWzFvHRpZ2V0", "bcO6emV1bQ==", "c3phcG9u", "a29ueWhh", "dmlsbMOhbQ==", "a2F0b25h", "ZsO8cmTFmXrFmQ==", "b3J2b3M=", "Z29tYmE=", "a2FtcGluZw==", "Z2l0w6Fy", "ZmVswGhv", "csOzeXNh", "dMO8eG9y", "c2FqdG9zcm9saQ==", "a2VyZGlr", "amVneW3DqWRv", "asOpc3N6ZWvDqW55", "dmlyw6Fn", "aG9sw3BvcmE=", "bcO5YmVy", "a2Fsw6F6", "w7Fyc2Vn", "csOhZGnDs3N6", "dGV0xZE=", "YWJsw2s=", "c3rDqWs=", "bMOhbXBh"];
+    const encodedFallback = [
+  "YWJsYWs=", "YWp0w7M=", "YXN6dGFs", "YWxtYQ==", "YXV0w7M=", "w6FsbGF0", "w6Fsb20=", "w6FneQ==", "YXBh", "YW55YQ==",
+  "YmFrYW5jcw==", "YmFsYXRvbg==", "YmFuw6Fu", "YmFyYWNr", "YmFyw6F0", "YmFybmE=", "YmF0eXU=", "YmFnb2x5", "YsOpa2E=", "YmljaWtsaQ==",
+  "Ym9jaQ==", "Ym9kemE=", "Ym9sdA==", "Ym9yeiw=", "Ym90", "YsO2Z3Jl", "YsWRcsO2bmQ=", "YsO8dsOpc3o=", "YsO8a2s=", "YsO6emE=",
+  "Y8OhcGE=", "Y2VydXph", "Y2ljYQ==", "Y2l0cm9t", "Y3VtaQ==", "Y3Vrb3I=", "Y3NhbMOhZA==", "Y3NhcGF0", "Y3NpZ2E=", "Y3NpbGxhZw==",
+  "Y3Npem1h", "Y3Nva2k=", "Y3PDs25haw==", "Y3PFmXI=", "Y3N1a2E=", "ZGFyYWI=", "ZGFydQ==", "ZGVzemth", "ZGlubnll", "ZGnDsQ==",
+  "ZG9ib3o=", "ZG9i", "ZG9rdG9y", "ZHpzdW5nZWw=", "ZWLDqWQ=", "ZWfDqXI=", "ZWfDqXN6c8OpZw==", "ZWd5ZWTDvWw=", "ZWxlZsOhbnQ=", "ZWxlbQ==",
+  "w6lsZXQ=", "ZW1iZXI=", "w6luZWs=", "ZXBlcg==", "w6lww7tsZXQ=", "ZXJk穫", "ZXJrw6lseQ==", "ZXJuefWR", "ZXLFmQ==", "ZXN6dGVyZ2E=",
+  "w6l0ZWw=", "ZXrDvHN0", "ZmE=", "ZmFneWk=", "ZmFs", "ZmFsdQ==", "ZsOhbms=", "ZmFyb2s=", "ZmFya2Fz", "ZmF6w6lr",
+  "ZmVqc3pl", "ZmVrZXRl", "ZmVsaMWR", "ZmVuefWR", "ZsOpc8Wx", "ZmVzdMOlaw==", "ZmnDug==", "Zm9jaQ==", "Zm9nYXM=", "ZsOza2E=",
+  "Zm9secOz", "Zm9udG9z", "ZsWRemVsw6lr", "ZsO8bA==", "ZsO8emV0", "ZsO8Z2fDtm55", "ZsWxcsOpc3o=", "ZsWxInN6ZXI=", "Z2FsYW1i", "Z2l0w6Fy",
+  "Z29secOz", "Z29tYmE=", "Z29tYg==", "Z8O2csO2Z2Rpbm55ZQ==", "Z8O2cmtvcmNzb2x5YQ==", "Z8WReg==", "Z3VsecOhcw==", "Z3VtaWNzaXptYQ==", "Z3llcmVr", "Z3llcnR5YQ==",
+  "Z3nDrWs=", "Z3lvcnM=", "Z3nFvXLFsQ==", "Z3nDvG3Dtmxjcw==", "aGFas7M=", "aGFs", "aMOhbMOz", "aGFuZ3lh", "aGFyYW5n", "aMOhdGl6c8Oha3o=",
+  "aMOheg==", "aGVneQ==", "aGVnZWTFsQ==", "aMOpd增ZmdZQ==", "aMOzZW1iZXI=", "aG9sZA==", "aG9sbMOz", "aG9tb2s=", "aG9yZMOz", "aG9yZ8Fze湛",
+  "aG9zc3rDug==", "aMOzdmnasWFn", "aMWRbcOocsWR", "aMOtZA==", "aGludGE=", "aMO6c3bDqXQ=", "aMWxdMWR", "aWTDtQ==", "aXNrb2xh", "aXRhbA==",
+  "aXpvbQ==", "asOhdMOlaws=", "asOpZw==", "asOpZ2tyw6lt", "amVsbWV6", "anVow6Fze湛", "a2Fiw6F0", "a2Fjc2E=", "a2FqYWs=", "a2FrYcOz",
+  "a2Fsw6Fjcw==", "a2FsYXA=", "a2FsYXDDoWNz", "a8OhbHloYQ==", "a2FtaW9u", "a2Fuw6Fs", "a2FwYQ==", "a2FwdQ==", "a2Fyw6Fjc29ueQ==", "a2FyZA==",
+  "a2FyZmlvbA==", "a2FzdMOp bHk=", "a2F0b25h", "a8OhdsOp", "a2VmZQ==", "asOpa2U=", "asOpbcOpbnk=", "a2VuecOpcg==", "a2Vyw6lr", "a2Vyw6lrcMOhcg==",
+  "a2VyZXN6dA==", "a2VydA==", "a2VzenR5xbE=", "asOpdA==", "asOtZ3nDsw==", "a2lmbGk=", "a2luY3M=", "a2lyw6FseQ==", "a29jc2k=", "a29ja2E=",
+  "a29jc29ueWE=", "asOza3Vze湛", "a29sYsOheno=", "as9tcA==", "as9ueWhh", "as9zw6Fy", "as92w6Fjcw==", "asO2bnl2", "asO2cnRl", "asWR",
+  "asO2cGVueQ==", "asO2cg==", "asO2cmhpbnRh", "asO2c3rDtm5ldA==", "asO2dMOpbA==", "asHLdGE=", "as9ydW1wbGk=", "as90eWE=", "asO8cnQ=", "asOtdno=",
+  "bGFiZGE=", "bGFrw6Fz", "bMOhbXBh", "bMOhbmM=", "bMOhbnk=", "bGFww6F0", "bGVrdmFy", "bGV2ZWfFmQ==", "bGV2ZXM=", "bGliYQ==",
+  "bMOpcGNzXW=", "bGV2w6ls", "bG9jc29sw7M=", "bMOz", "bG9ww7N0w7Zr", "bHVmaQ==", "bMO6ZA==", "bWFjc2th", "bWFkw6Fy", "bcOhZ25lcw==",
+  "bWFqb20=", "bcO6bG5h", "bWFsYWM=", "bWFuY3M=", "bWFuZHVsYQ==", "bWFyaGE=", "bWFzbmk=", "bWFja8Oz", "bWVkdmU=", "bWVnZ3k=",
+  "bWVsZWc=", "bcO6bHk=", "bWVudMWR", "bWVzZQ==", "bcOleiM=", "bcOpaGVjc2tl", "bcOza3Vz", "bc9neW9yw7M=", "bc96ZG9ueQ==", "bc96aQ==",
+  "bXVua2E=", "bXV0YXTDsw==", "bcO6emV1bQ==", "bcWxdsOpc3o=", "bsOhZA==", "bmFkcsOhZw==", "bmFw", "bmFwcmFmb3Jnw7M=", "bmFyYW5jcw==", "bsOpbmk=",
+  "bsOpdg==", "bmV2ZXRpcw==", "bnlhaw==", "bnnFtsW=", "bnnDoXI=", "bnllcmVn", "bnlpdG90dA==", "bnlvbGNhcw==", "bnlvbQ==", "bnl1Z2Fsb20=",
+  "b2xhag==", "b2xsw7M=", "b2x2YXPDoXN6", "w7NyYQ==", "b3Jnb25h", "b3Jvc3psw6Fu", "b3Jy", "b3J2b3M=", "b3N6dMOhbHk=", "b3N6dG9y",
+  "xZF6", "cGFk", "cGFsYWNzaW50YQ==", "cMOhbHlh", "cGFwdWNz", "cGFww6ly", "cGFwYWfDoWos", "cGFwbGFu", "cGF0YWs=", "cGF0a8Oz",
+  "cMOhdmE=", "cMOpa2U=", "cGVsaWvDoW4=", "cMOpbno=", "cGVyYw==", "cGVyZWM=", "cGV0cmV6c2VseWVt", "cGlyb3M=", "cGlsw7N0YQ==", "cGludHk=",
+  "cGlwYWNz", "cGlwYQ==", "cGlyYW1pcw==", "cGlzenRvbHk=", "cGl6c2FtYQ==", "cMOza2E=", "cG9sYw==", "cG9saXA=", "cG9udA==", "ccOzbmk=",
+  "ccO2cms9bHQ=", "cG9zdMOhcw==", "cHV0dG9ueQ==", "cHVza2E=", "csOhaw==", "cmFkw6ly", "csOhZGnDs3M=", "cmFqeg==", "cmV0ZWs=", "cmVww7tsxZE=",
+  "csOpcGE=", "cmVuZMWRcg==", "cmVnZ2Vs", "cmVnZ2VsaQ==", "cmVtw6lueQ==", "csOpe湛", "cmlnw7M=", "cml0a2E=", "cm9ib3Q=", "cm9rb24=",
+  "cm9zdA==", "cm9sbGVy", "cnVoYQ==", "csOza2E=", "csO9enNh", "c2Fas6F0", "c2FqdA==", "c8O6bA==", "c2Fsw6F0YQ==", "c8Ohcmdh",
+  "c8OhcmvDoW55", "c2Fyb2s=", "c8O6dG9y", "c2VwcsWx", "c8OtcA==", "c2lzYWs=", "c8Oz", "c29ua2E=", "c29yb21ww7M=", "c8O2csOpbnk=",
+  "c8O2dMOpdA==", "c8O2cg==", "c3RhdGlzenRh", "c3RvcHTDoWJsYQ==", "c8O6Z8Oz", "c8O6bHk=", "c8O8dGVtw6lueQ==", "c8O8bmRpc3puz7M=", "c3phYmFk", "c3rDoWo=",
+  "c3phbG9ubmE=", "c3phbcOhcg==", "c3rDoW5rw7M=", "c3phcHBhbg==", "c3phcmth", "c3phcnZhcw==", "c3rDoXo=", "c3rDqWs=", "c3pla3LDqW55", "c3rDqWw=",
+  "c3plbQ==", "c3plbcO8dmVn", "c3rDqW5h", "c3rDqW4=", "c3rDqXA=", "c3plcmVsZW0=", "c3plcnN6w6Ft", "c3ppZ2V0", "c3ppa2xh", "c3ppbHZh",
+  "c3rDrW5ow6F6", "c3rDrXY=", "c3ppdmFjcw==", "c3ppdsOhcnbDoW55", "c3rDsw==", "c3pvYmE=", "c3pvYm9y", "c3pvbXN6w6lk", "c3rDtmNza2U=", "c3rFmGzFmQ==",
+  "c3rFmW55ZWc=", "c3rDunlvZw==", "c3rDvGxpbmFw", "c3rDvHJldA==", "dMOhYmxh", "dGFsaWfDoXM=", "dMOhbA==", "dGFscA==", "dGFuYcOhcg==", "dMOhbmM=",
+  "dMOhbnnDqXI=", "dGFwYXN6", "dMOhc2th", "dGF2YXN6", "dGVh", "dGVow6lu", "dGVq", "dGVrbvWRcw==", "dGVsZWZvbg==", "dMOpbA==",
+  "dGVtcGxvbQ==", "dGVuZ2Vy", "dGVuaXN6", "dMOpcmtpcA==", "dGVzdHbDqXI=", "dMOpc3p0YQ==", "dGV0xZE=", "dGV2ZQ==", "dMWx", "dMO8asO2cg==",
+  "dMW9bmTDqXI=", "dMWxe湛", "dMWxeW9sdM7M", "dMOz", "dG9as6Fz", "dG9sbA==", "dG9ydGE=", "dMO2a2k=", "dMO2csO2bGtvesWR", "dMO2dmlz",
+  "dHJvbWJpdGE=", "dHVsaXDDoW4=", "dMO6csOz", "dHnDunA=", "dWR2YXI=", "dWdyw6Fz", "dWpq", "w7pqc8OhZw==", "w7p0", "dXRhesOhcw==",
+  "dXRjYQ==", "w7tsdsO2emxldA==", "w7ZneWVz", "w7ts", "w7tubmVw", "w7tzdA==", "w7tsZWc=", "w7tsbGV0", "dmFjc29yYQ==", "dmFkw6Fze湛",
+  "dmFnb24=", "dmFq", "dsOhbHlvZw==", "dsOhcm9z", "dmFz", "dmFzYWzDsQ==", "dmFzaint", "dsOheiM=", "dsO2ZMO2cg==", "dsO2csO2cw==",
+  "emFq", "esOhc3psw7M=", "emVuZQ==", "esO2bGQ=", "em9uZ29yYQ==", "enNlYg==", "enNlbWxl", "enNpcsOhZg=="
+];
+    const encodedFallback3 = ["a29yw6Fjcw==", "a2VyZGlraQ==", "cmVwdWzFvHRpZ2V0", "bcO6emV1bQ==", "c3phcG9u", "a29ueWhh", "dmlsbMOhbQ==", "a2F0b25h", "ZsO8cmTFmXrFmQ==", "b3J2b3M=", "Z29tYmE=", "a2FtcGluZw==", "Z2l0w6Fy", "ZmVswGhv", "csOzeXNh", "dMO8eG9y", "c2FqdG9zcm9saQ==", "a2VyZGlr", "amVneW3DqWRv", "asOpc3N6ZWvDqW55", "dmlyw6Fn", "aG9sw3BvcmE=", "bcO5YmVy", "a2Fsw6F6", "w7Fyc2Vn", "csOhZGnDs3N6", "dGV0xZE=", "YWJsw2s=", "c3rDqWs=", "bMOhbXBh"];
 
     const encodedFallback2 = ["YXV0w7M=", "YWxtYQ==", "Z2l0w6Fy", "aXNrb2xh", "cmVwb2zFkQ==", "dGVsZWZvbg==", "a2F2w6k=", "ZXJkxZE="];
 
@@ -28,8 +76,15 @@
 
     const app = document.getElementById('app');
 
+    // UTF-8 kompatibilis dekódolás
+    const decode = (str) => decodeURIComponent(atob(str).split('').map(c => {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+    // Teszt a "tető"-re:
+    // decodeWord("ZGV0xZE=") -> "tető"
+    
     // Helper a biztonságos dekódoláshoz
-    function decode(str) {
+    function decode1(str) {
         return decodeURIComponent(escape(atob(str)));
     }
 
@@ -166,4 +221,5 @@
 </body>
 
 </html>
+
 
