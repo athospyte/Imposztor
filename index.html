@@ -89,6 +89,7 @@
     }
 
     async function fetchRandomWikiWord() {
+        const randomEncoded = encodedFallback[Math.floor(Math.random() * encodedFallback.length)];
         return decode(randomEncoded);
     }
     
@@ -221,5 +222,6 @@
 </body>
 
 </html>
+
 
 
