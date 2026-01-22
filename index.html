@@ -63,9 +63,6 @@
   "dmFnb24=", "dmFq", "dsOhbHlvZw==", "dsOhcm9z", "dmFz", "dmFzYWzDsQ==", "dmFzaint", "dsOheiM=", "dsO2ZMO2cg==", "dsO2csO2cw==",
   "emFq", "esOhc3psw7M=", "emVuZQ==", "esO2bGQ=", "em9uZ29yYQ==", "enNlYg==", "enNlbWxl", "enNpcsOhZg=="
 ];
-    const encodedFallback3 = ["a29yw6Fjcw==", "a2VyZGlraQ==", "cmVwdWzFvHRpZ2V0", "bcO6emV1bQ==", "c3phcG9u", "a29ueWhh", "dmlsbMOhbQ==", "a2F0b25h", "ZsO8cmTFmXrFmQ==", "b3J2b3M=", "Z29tYmE=", "a2FtcGluZw==", "Z2l0w6Fy", "ZmVswGhv", "csOzeXNh", "dMO8eG9y", "c2FqdG9zcm9saQ==", "a2VyZGlr", "amVneW3DqWRv", "asOpc3N6ZWvDqW55", "dmlyw6Fn", "aG9sw3BvcmE=", "bcO5YmVy", "a2Fsw6F6", "w7Fyc2Vn", "csOhZGnDs3N6", "dGV0xZE=", "YWJsw2s=", "c3rDqWs=", "bMOhbXBh"];
-
-    const encodedFallback2 = ["YXV0w7M=", "YWxtYQ==", "Z2l0w6Fy", "aXNrb2xh", "cmVwb2zFkQ==", "dGVsZWZvbg==", "a2F2w6k=", "ZXJkxZE="];
 
     let state = {
         players: 3,
@@ -80,32 +77,13 @@
     const decode = (str) => decodeURIComponent(atob(str).split('').map(c => {
         return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
     }).join(''));
-    // Teszt a "tető"-re:
-    // decodeWord("ZGV0xZE=") -> "tető"
+    // Teszt a "tető"-re: decodeWord("ZGV0xZE=") -> "tető"
     
-    // Helper a biztonságos dekódoláshoz
-    function decode1(str) {
-        return decodeURIComponent(escape(atob(str)));
-    }
-
-    async function fetchRandomWikiWord() {
+    async function fetchRandomWord() {
         const randomEncoded = encodedFallback[Math.floor(Math.random() * encodedFallback.length)];
         return decode(randomEncoded);
     }
     
-    async function fetchRandomWikiWord2() {
-        const url = `https://hu.wikipedia.org/w/api.php?action=query&list=random&rnnamespace=0&rnlimit=1&format=json&origin=*`;
-        try {
-            const response = await fetch(url);
-            const data = await response.json();
-            return data.query.random[0].title;
-        } catch (e) {
-            console.warn("Wiki API hiba, kódolt fallback használata.");
-            const randomEncoded = encodedFallback[Math.floor(Math.random() * encodedFallback.length)];
-            return decode(randomEncoded);
-        }
-    }
-
     function initUI() {
         app.innerHTML = `
             <h1 class="text-2xl font-bold mb-6 text-blue-400 tracking-tight">Imposztor Játék</h1>
@@ -131,7 +109,7 @@
                 <p class="text-gray-400 animate-pulse">Titkos szó generálása...</p>
             </div>`;
 
-        state.secretWord = await fetchRandomWikiWord();
+        state.secretWord = await fetchRandomWord();
         showTransition();
     }
 
@@ -222,6 +200,7 @@
 </body>
 
 </html>
+
 
 
 
